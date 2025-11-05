@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "vercel-build": "npm run build",
+    "start": "vite preview --port 3000"
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.6.0",
