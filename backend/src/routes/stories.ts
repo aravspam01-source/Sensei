@@ -206,7 +206,7 @@ router.put('/:id', auth, async (req: AuthRequest, res) => {
 });
 
 // Delete a story
-router.delete('/:id', auth, async (req: any, res) => {
+router.delete('/:id', auth, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params;
     const userId = req.user.id;
