@@ -2,7 +2,7 @@ import express from 'express';
 import { prisma } from '../models/database';
 import { textProcessor } from '../services/textProcessor';
 import { animationGenerator } from '../services/animationGenerator';
-import { auth } from '../middleware/auth';
+import { auth, AuthRequest } from '../middleware/auth';
 
 const router = express.Router();
 
