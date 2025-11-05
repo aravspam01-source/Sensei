@@ -249,7 +249,7 @@ router.delete('/:id', auth, async (req: AuthRequest, res) => {
 });
 
 // Generate scenes for a story
-router.post('/:id/generate-scenes', auth, async (req: any, res) => {
+router.post('/:id/generate-scenes', auth, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params;
     const { force_regenerate = false } = req.body;
