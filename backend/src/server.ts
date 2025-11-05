@@ -28,6 +28,7 @@ app.use('/api/stories', require('./routes/stories'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/animations', require('./routes/animations'));
 app.use('/api/export', require('./routes/export'));
+app.use('/api/share', require('./routes/share'));
 
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
