@@ -342,7 +342,7 @@ router.post('/:id/generate-scenes', auth, async (req: AuthRequest, res) => {
 });
 
 // Duplicate a story
-router.post('/:id/duplicate', auth, async (req: any, res) => {
+router.post('/:id/duplicate', auth, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params;
     const { newTitle } = req.body;
