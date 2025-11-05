@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { DifficultyLevel, AnimationStyle } from '../App';
+import type { DifficultyLevel, AnimationStyle } from '../App';
 
 interface DifficultySelectorProps {
   difficulty: DifficultyLevel;
