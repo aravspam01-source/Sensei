@@ -7,7 +7,7 @@ import { auth, AuthRequest } from '../middleware/auth';
 const router = express.Router();
 
 // Get all stories (with optional user filter)
-router.get('/', auth, async (req: any, res) => {
+router.get('/', auth, async (req: AuthRequest, res) => {
   try {
     const { userId, page = 1, limit = 10, search } = req.query;
     const skip = (Number(page) - 1) * Number(limit);
