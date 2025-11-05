@@ -481,7 +481,7 @@ router.get('/user/:userId', auth, async (req, res) => {
 });
 
 // Share a story
-router.post('/:id/share', auth, async (req: any, res) => {
+router.post('/:id/share', auth, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params;
     const { expiresIn = 7 * 24 * 60 * 60 * 1000, allowDownload = true } = req.body; // Default 7 days
