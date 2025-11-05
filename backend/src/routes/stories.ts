@@ -103,7 +103,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create a new story
-router.post('/', auth, async (req: any, res) => {
+router.post('/', auth, async (req: AuthRequest, res) => {
   try {
     const { title, original_text, difficulty_level, animation_style } = req.body;
     const userId = req.user.id;
