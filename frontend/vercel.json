@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "name": "sensei-visual-story-generator",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "REACT_APP_API_URL": "@backend_url",
+    "REACT_APP_ENVIRONMENT": "production"
+  },
+  "regions": ["iad1"],
+  "functions": {},
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}

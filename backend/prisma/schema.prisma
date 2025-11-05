@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  age_group         AgeGroup @default(ELEMENTARY)
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  stories           Story[]
+
+  @@map("users")
+}
+
+model Story {
+  id               String          @id @default(cuid())
+  user_id          String
+  title            String
+  original_text    String
+  difficulty_level DifficultyLevel @default(ELEMENTARY)
+  animation_style  AnimationStyle  @default(CARTOON)
+  created_at       DateTime        @default(now())
+  updated_at       DateTime        @updatedAt
+
+  user             User            @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  scenes           Scene[]
+
+  @@map("stories")
+}
+
+model Scene {
+  id              String          @id @default(cuid())
+  story_id        String
+  scene_order     Int
+  text_content    String
+  visual_elements Json?           // Store visual elements as JSON
+  animation_data  Json?           // Store animation data as JSON
+  duration        Int             @default(5) // Duration in seconds
+
+  story           Story           @relation(fields: [story_id], references: [id], onDelete: Cascade)
+  assets          GeneratedAsset[]
+
+  @@map("scenes")
+}
+
+model GeneratedAsset {
+  id                String          @id @default(cuid())
+  scene_id          String
+  asset_type        AssetType
+  cloudinary_url    String?
+  local_path        String?
+  generation_method GenerationMethod @default(AI)
+  metadata          Json?           // Additional metadata about the asset
+
+  scene             Scene           @relation(fields: [scene_id], references: [id], onDelete: Cascade)
+
+  @@map("generated_assets")
+}
+
+enum AgeGroup {
+  ELEMENTARY
+  MIDDLE
+  HIGH
+  ADULT
+}
+
+enum DifficultyLevel {
+  ELEMENTARY
+  MIDDLE
+  HIGH
+}
+
+enum AnimationStyle {
+  CARTOON
+  REALISTIC
+  ABSTRACT
+}
+
+enum AssetType {
+  BACKGROUND
+  CHARACTER
+  PROP
+  EFFECT
+}
+
+enum GenerationMethod {
+  AI
+  PRE_MADE
+  UPLOADED
+}
