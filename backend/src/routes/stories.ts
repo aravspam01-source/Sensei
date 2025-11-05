@@ -147,7 +147,7 @@ router.post('/', auth, async (req: AuthRequest, res) => {
 });
 
 // Update a story
-router.put('/:id', auth, async (req: any, res) => {
+router.put('/:id', auth, async (req: AuthRequest, res) => {
   try {
     const { id } = req.params;
     const { title, original_text, difficulty_level, animation_style } = req.body;
